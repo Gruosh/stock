@@ -6,14 +6,14 @@
     "authors":
     [
         {
-            "name": "plentymarkets",
-            "email": "sales@plentymarkets.com",
-            "homepage": "https://www.plentymarkets.eu",
+            "name": "niklas und patrick",
+            "email": "info@patrickgrau.de",
+            "homepage": "https://www.webameise.de",
             "role": "Developer"
         }
     ],
     "require":
     {
-        "php": "^5.5 || ^7.0"
+        "php": "^7.0"
     }
 }

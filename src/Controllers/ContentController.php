@@ -9,13 +9,13 @@ use Plenty\Modules\Item\DataLayer\Models;
 class ContentController extends Controller
 {
 
-	public function showAllArticle()
+	public function search()
 	{
 		$list = [];
 
-		$stockModel = pluginApp(VariationStock::class);
+		$itemDataLayerRepositoryContract = pluginApp(ItemDataLayerRepositoryContract::class);
 
-		$stockList = $stockModel->toArray();
+		$stockList = $itemDataLayerRepositoryContract->toArray();
 
 		foreach($stocklist->getResult() as $stock)
 		{

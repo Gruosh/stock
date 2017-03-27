@@ -15,6 +15,7 @@ class StockServiceProvider extends ServiceProvider
 	 */
 	public function register()
 	{
-		$this->getApplication()->register(ItemDataLayerRepositoryContract::class);
+		// RouteServiceProvider Klasse hier registrieren
+		$this->getApplication()->register(StockRouteServiceProvider::class);
 	}
 }

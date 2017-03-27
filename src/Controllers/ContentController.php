@@ -15,7 +15,8 @@ class ContentController extends Controller
 
 		$itemDataLayerRepositoryContract = pluginApp(ItemDataLayerRepositoryContract::class);
 
-		$stockList = $itemDataLayerRepositoryContract->toArray();
+		// Methode von plentymarkets angeben, welche vom Repo gezogen werden soll.
+		$stockList = $itemDataLayerRepositoryContract->search();
 
 		foreach($stocklist->getResult() as $stock)
 		{

@@ -10,6 +10,10 @@ class StockRouteServiceProvider extends RouteServiceProvider
 {
   public function map(Router $router)
   	{
-  		$router->get('stock', 'stock\Controllers\ContentController@search');
+      // der 1. parameter gehört zum URL aufruf über postman zb
+      // der 2. param ist der Pfad zur Klasse/Methode die aufgerufen werden soll
+      // beim 2. Param fängt man immer mit dem "namespace" an (der muss genau glecih geschrieben werden, in deinem fall hier S von stock groß)
+      // das nach dem @ ist die methode, die stimmt hier
+  		$router->get('stock', 'Stock\Controllers\ContentController@search');
   	}
 }

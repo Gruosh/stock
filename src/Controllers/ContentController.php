@@ -3,7 +3,7 @@ namespace Stock\Controllers;
 
 use Plenty\Plugin\Controller;
 use Plenty\Plugin\Templates\Twig;
-use Plenty\Modules\StockManagement\Stock\Models
+use Plenty\Modules\Item\DataLayer\Models;
 
 
 class ContentController extends Controller
@@ -13,9 +13,9 @@ class ContentController extends Controller
 	{
 		$list = [];
 
-		$stockRepo = pluginApp(Stock::class);
+		$stockModel = pluginApp(VariationStock::class);
 
-		$stockList = $stockRepo->toArray();
+		$stockList = $stockModel->toArray();
 
 		foreach($stocklist->getResult() as $stock)
 		{

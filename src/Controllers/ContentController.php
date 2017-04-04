@@ -1,6 +1,7 @@
 <?php
 namespace Stock\Controllers;
 
+use Plenty\Modules\Item\DataLayer\Contracts\ItemDataLayerRepositoryContract;
 use Plenty\Plugin\Controller;
 use Plenty\Plugin\Templates\Twig;
 use Plenty\Modules\Item\DataLayer\Models;
@@ -15,18 +16,37 @@ class ContentController extends Controller
 
 		$itemDataLayerRepositoryContract = pluginApp(ItemDataLayerRepositoryContract::class);
 
-		// Methode von plentymarkets angeben, welche vom Repo gezogen werden soll.
-		$stockList = $itemDataLayerRepositoryContract->search();
+		$resultFields = [
+			'itemBase' => [
+				'id'
+			],
+			'variationBase' => [
+				'id'
+			],
+			'variationStock' => [
+				'params' => [
+					'type' => 'virtual'
+				],
+				'fields' => [
+					'stockNet',
+					'stockPhysical',
+					'reservedStock',
+					'reordered'
+				]
+			]
+		];
 
-		foreach($stocklist->getResult() as $stock)
+		$variationList = $itemDataLayerRepositoryContract->search($resultFields);
+
+		foreach($variationList as $variation)
 		{
-			$list[$stock->id] = [
-				'itemid' => $stock->itemid,
-				'variationid' => $stock->variationid,
-				'stockPhysical' => $stock->stockPhysical,
-				'reservedStock' =>$stock->reservedStock,
-				'stockNet' => $stock->stockNet,
-				'reordered' =>$stock->reordered,
+			$list[$variation->itemBase->id] = [
+				'itemid' => $variation->itemBase->id,
+				'variationId' => $variation->variationBase->id,
+				'stockPhysical' => $variation->variationStock->stockPhysical,
+				'reservedStock' =>$variation->variationStock->reservedStock,
+				'stockNet' => $variation->variationStock->stockNet,
+				'reordered' =>$variation->variationStock->reordered,
 			];
 		}
 
